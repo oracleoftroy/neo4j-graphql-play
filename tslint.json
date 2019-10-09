@@ -1,0 +1,22 @@
+{
+	"extends": "tslint:recommended",
+	"rules": {
+		"arrow-parens": ["error", "as-needed"],
+		"max-classes-per-file": [false],
+		"max-line-length": {
+			"options": [140]
+		},
+		"indent": [true, "tabs", 2],
+		"member-ordering": [
+			true,
+			{
+				"order": ["static-field", "instance-field", "static-method", "instance-method"]
+			}
+		],
+		"no-consecutive-blank-lines": false,
+		"object-literal-sort-keys": false,
+		"ordered-imports": false,
+		"quotemark": [true, "single"],
+		"variable-name": [true, "allow-leading-underscore"]
+	}
+}

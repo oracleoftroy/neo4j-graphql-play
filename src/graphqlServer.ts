@@ -1,4 +1,4 @@
-import { v1 as neo4j } from 'neo4j-driver';
+import neo4j from 'neo4j-driver';
 import { makeAugmentedSchema } from 'neo4j-graphql-js';
 import { Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
@@ -31,7 +31,7 @@ type PostStatus @relation(name: "HAS_STATUS") {
 export function setupGraphQL(app: Application) {
 	const driver = neo4j.driver(
 		'bolt://localhost:7687',
-		neo4j.auth.basic('imakethismeself-blog', 'imakethismeself-blog'),
+		neo4j.auth.basic('imakethismeself-blog', 'imakethismeself-blog')
 	);
 	const schema = makeAugmentedSchema({ typeDefs });
 	const server = new ApolloServer({ schema, context: { driver } });

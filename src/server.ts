@@ -8,7 +8,7 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 
 import { config } from './config';
 import { log } from './logger';
-import { setupGraphQL } from './graphql';
+import { setupGraphQL } from './graphqlServer';
 
 class Stream {
 	public write(text: string) {
@@ -18,9 +18,7 @@ class Stream {
 
 function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
 	log.error(err);
-	res.status(500)
-		.json({ error: err })
-		.end();
+	res.status(500).json({ error: err }).end();
 }
 
 export class Server {

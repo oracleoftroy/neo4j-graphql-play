@@ -28,7 +28,31 @@ export class Server {
 		const app = express();
 		app.use(morgan('combined', { stream: new Stream() }));
 		app.use(compression());
-		app.use(helmet());
+		app.use(
+			helmet({
+				contentSecurityPolicy: {
+					directives: {
+						defaultSrc: ['\'self\''],
+						scriptSrc: [
+							'\'self\'',
+							'\'unsafe-inline\'',
+							'fonts.googleapis.com',
+							'fonts.gstatic.com',
+							'cdn.jsdelivr.net/',
+						],
+						fontSrc: ['\'self\'', 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net/'],
+						styleSrc: [
+							'\'self\'',
+							'\'unsafe-inline\'',
+							'fonts.googleapis.com',
+							'fonts.gstatic.com',
+							'cdn.jsdelivr.net/',
+						],
+						imgSrc: ['\'self\'', 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net/'],
+					},
+				},
+			})
+		);
 		app.use(cors());
 		app.use(cookieParser());
 		app.use(bodyParser.json());
